@@ -42,7 +42,7 @@ def getProvinceCount(cityCount,countName):
     v1 = counts
     bar = Bar(countName)
     bar.add("地区分布", attr, v1, is_stack=True, is_label_show=True, is_datazoom_show=True,
-            is_random=True)
+            is_random=True, color=['r', 'g', 'b'])
     page.add(bar)
     bar.show_config()
     bar.render()
@@ -178,12 +178,15 @@ def main():
     roomMsg = getRoomMsg(u'与你同行') #获取指定群聊的信息
     gsq = itchat.update_chatroom(roomMsg[0]['UserName'], detailedMember=True)
     df_friends = pd.DataFrame(gsq['MemberList'])    #取出其中的用户信息并转为dataframe
+    print df_friends
     #sexs = getSex(df_friends)   #获取性别统计
     #getSexCount(sexs,"公司性别统计图")    #制作性别统计图，第一个参数为性别统计的结果，第二个参数为该图的名称
-    #city = df_friends['Province']   #取出省份信息
-    #City_count = city.value_counts()[:15]
-    #City_count = City_count[City_count.index != '']
-    #getProvinceCount(City_count,"位置统计图")     #制作位置统计图，第一个参数为位置统计的结果，第二个参数为该图的名称
+    city = df_friends['Province']   #取出省份信息
+    city = df_friends['City']   #取出省份信息
+    City_count = city.value_counts()[:15]
+    City_count = city.value_counts()
+    City_count = City_count[City_count.index != '']
+    getProvinceCount(City_count,"位置统计图")     #制作位置统计图，第一个参数为位置统计的结果，第二个参数为该图的名称
     #makeWorldCount(df_friends['NickName'])  #制作词云，传入用户昵称
     #makeWorldCount(signature)
     #analyMale(df_friends)
