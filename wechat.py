@@ -191,7 +191,7 @@ def main():
     #makeWorldCount(signature)
     #analyMale(df_friends)
     #itchat.auto_login()
-    itchat.run()
+    #itchat.run()
 if __name__=='__main__':
    main()
 
